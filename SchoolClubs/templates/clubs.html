@@ -1,0 +1,52 @@
+<div class="section">
+	<div class="container">
+		<div class="section__title">
+			{{params['clubs_title']|safe}}
+		</div>
+		<div class="section__content">
+			{% if params['clubs_search_form'] %}
+			<form action="" method="post">
+				<div class="form__row row">
+					<div class="form__group">
+						<input type="text" name="search" placeholder="Ваше имя">
+					</div>
+					<div class="form__group">
+						<select name="sort_by" placeholder="Пол ребенка">
+							<option value="0">Сортировать по</option>
+							<option value="1">По алфавиту</option>
+							<option value="2">По возрасту</option>
+						</select>
+					</div>
+				</div>
+				<div class="form__row row single">
+					<div class="form__group">
+						<select name="club_id" placeholder="Категория">
+							<option value="0">Категория</option>
+							{% for item in params['clubs_categories'] %}
+								<option value="{{ item['id'] }}">{{ item["name"] }}</option>
+						    {% endfor %}
+						</select>
+					</div>
+				</div>
+				<button type="submit" class="btn">Показать</button>
+			</form>
+			{% endif %}
+			{%
+				for item in params['clubs_list']
+			%}
+			<div class="clubs-list">
+				<div class="club-block">
+					<div class="club-block__title">
+						{{item['name']|safe}}
+					</div>
+					<div class="club-block__button">
+						<a class="btn" href="/club/{{item['id']}}">Подробнее</a>
+					</div>
+				</div>
+			</div>
+			{%
+				endfor
+			%}
+		</div>
+	</div>
+</div>

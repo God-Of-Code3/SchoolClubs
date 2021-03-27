@@ -57,13 +57,13 @@
 						<input type="date" name="document_date" placeholder="Дата выдачи документа">
 					</div>
 				</div>
-				<div class="form__row row">
+				<div class="form__row row single">
 					<div class="form__group">
 						<input type="email" name="email" placeholder="E-mail">
 					</div>
 				</div>
 				{% if 'club' not in params %}
-				<div class="form__row row">
+				<div class="form__row row single">
 					<div class="form__group">
 						<select name="club_id" placeholder="Выберите кружок">
 							{% for item in params['clubs'] %}
