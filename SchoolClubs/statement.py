@@ -1,4 +1,5 @@
 from docxtpl import DocxTemplate
+from SchoolClubs.db.classes2 import Statement, Club
 from pathlib import Path
 
 
@@ -11,17 +12,20 @@ MONTHS = ['января', 'февраля', 'марта', 'апреля',
 def createStatement(manager, st_id):
     try:
         if st_id.isdigit():
-            statements = manager.get_items('statement', 'id=' + str(st_id))
+            st = Statement(manager, id=str(st_id)).fields
         else:
-            statements = manager.get_items('statement', 'track_code=' + st_id)
-        st = statements[0].args
+            st = Statement(manager, track_code=str(st_id)).fields
+        club = Club(manager, id=str(st['club_id'])).get('name')
 
         doc = DocxTemplate(STTMNT_TMPLT.resolve())
     except Exception as e:
         print('Error:', e)
     else:
         print(st)
+
         context = {}
+        context['club'] = club
+
         for val in list(st.keys()):
             if val == 'child_gender':
                 if st[val] == 1:
@@ -41,4 +45,4 @@ def createStatement(manager, st_id):
         context['year'] = int(st['statement_datetime'].year) % 2000
 
         doc.render(context)
-        doc.save(str(st['id']) + ".docx")
+        doc.save(club + ' ' + str(st['child_surname']) + ".docx")
