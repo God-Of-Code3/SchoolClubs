@@ -250,16 +250,15 @@ class User(TableItem):
 
 class Statement(TableItem):
     def __init__(self, manager, add=False, select=True, id=None, parent_name="", parent_surname="",
-                 parent_middle_name="", parent_phone="", child_name="", child_surname="", child_middle_name="",
+                 parent_middle_name="", child_name="", child_surname="", child_middle_name="",
                  child_gender=1, child_birthday="2006-01-17", document_type=0, document_series="",
-                 document_number="", document_date="2006-01-24", track_code="", club_id=0,
+                 document_number="", document_date="2006-01-24", track_code="", club_id=0, email="",
                  statement_datetime="2021-03-22:23:39:00", statement_ip="127.0.0.1"):
         args = {
             "id": id,
             "parent_name": parent_name,
             "parent_surname": parent_surname,
             "parent_middle_name": parent_middle_name,
-            "parent_phone": parent_phone,
             "child_name": child_name,
             "child_surname": child_surname,
             "child_middle_name": child_middle_name,
@@ -270,6 +269,9 @@ class Statement(TableItem):
             "document_number": document_number,
             "document_date": document_date,
             "statement_datetime": statement_datetime,
+            "club_id": club_id,
+            "track_code": track_code,
+            "email": email,
             "statement_ip": statement_ip
         }
         super().__init__(manager, "statement", "id", add=add, select=select, **args)
@@ -277,7 +279,7 @@ class Statement(TableItem):
 
 class Club(TableItem):
     def __init__(self, manager, add=False, select=True, id=None, category_id=1, name="Безымянный кружок",
-                 description="Описание безымянного кружка", max_student=10, price=0, gender=-1, age=""):
+                 description="Описание безымянного кружка", max_student=10, price=0, gender=-1, age="", image=""):
         args = {
             "id": id,
             "category_id": category_id,
@@ -286,7 +288,8 @@ class Club(TableItem):
             "max_student": max_student,
             "price": price,
             "gender": gender,
-            "age": age
+            "age": age,
+            "image": image
         }
         super().__init__(manager, "club", "id", add=add, select=select, **args)
 
@@ -336,6 +339,7 @@ class ClubCategory(TableItem):
 
 CLASSES = {
     "user": User,
+    "club": Club,
     "club_group": Group,
     "club_group_lesson": Lesson,
     "statement": Statement,
