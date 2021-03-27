@@ -51,6 +51,16 @@
 					{% endfor %}
 				</div>
 			</div>
+			{%
+				if not params['all_techers']
+			%}
+			<div class="center">
+				<a href="/teachers/" class="btn">Все преподаватели</a>
+			</div>
+			
+			{%
+				endif
+			%}
 		</div>
 	</div>
 </div>
