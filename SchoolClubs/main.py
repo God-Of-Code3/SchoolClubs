@@ -18,6 +18,12 @@ def index():
     clubs = manager.get_items("club", "1")
     for club in clubs:
         params["clubs"].append({"id": club.get('id'), "name": club.get('name')})
+    params["screen_image"] = "main-screen.jpg"
+    params["screen_title"] = "КРУЖКИ ШКОЛЫ<br>2065"
+
+    params["text_block"] = "Школьные кружки помогают детям узнавать что-то новое и интересное, знакомиться с новыми " \
+                           "технологиями и увлекательными занятиями, раскрывать их таланты и находить свое призвание."
+
     params["teachers_rows"] = [
         [
             {
