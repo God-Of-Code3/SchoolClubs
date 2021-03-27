@@ -1,41 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=100%, initial-scale=1.0, user-scalable=no">
-	<link rel="stylesheet" href="static/css/main.css">
-	<title>Кружки 2065</title>
-</head>
-<body>
-	<div class="wrapper">
-		<div class="header">
-			<div class="container">
-				<div class="header__content">
-					<div class="header__brand brand">
-						<div class="brand__image">
-							<img src="static/img/logo.png" alt="">
-						</div>
-						<div class="brand__text">
-							<h5>КРУЖКИ</h5>
-							<h2>2065</h2>
-						</div>
-					</div>
-					<div class="header__menu menu">
-						<div class="menu__item">
-							<button class="btn">
-								Записаться
-							</button>
-						</div>
-						<div class="menu__item _underlined active"><a href="">Главная</a></div>
-						<div class="menu__item _underlined"><a href="">Преподаватели</a></div>
-						<div class="menu__item _underlined"><a href="">Кружки</a></div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="footer">
-			
-		</div>
-	</div>
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+
+{% include "register_in_club_form.html" %}
+{% include "teachers.html" %}
+
+{% endblock %}

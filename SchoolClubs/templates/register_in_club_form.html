@@ -1,0 +1,82 @@
+<div class="section">
+	<div class="container">
+		<div class="section__content">
+			<form action="/statement_handler/" method="post">
+				<div class="form__row row">
+					<div class="form__group">
+						<input type="text" name="parent_name" placeholder="Ваше имя">
+					</div>
+					<div class="form__group">
+						<input type="text" name="child_name" placeholder="Имя ребенка">
+					</div>
+				</div>
+				<div class="form__row row">
+					<div class="form__group">
+						<input type="text" name="parent_surname" placeholder="Ваша фамилия">
+					</div>
+					
+					<div class="form__group">
+						<input type="text" name="child_surname" placeholder="Фамилия ребенка">
+					</div>
+				</div>
+				<div class="form__row row">
+					<div class="form__group">
+						<input type="text" name="parent_middle_name" placeholder="Ваше отчество">
+					</div>
+					<div class="form__group">
+						<input type="text" name="child_middle_name" placeholder="Отчество ребенка">
+					</div>
+				</div>
+				<div class="form__row row">
+					<div class="form__group">
+						<input type="date" name="child_birthday" placeholder="Дата рождения ребенка">
+					</div>
+					<div class="form__group">
+						<select name="child_gender" placeholder="Пол ребенка">
+							<option value="1">Мужской</option>
+							<option value="0">Женский</option>
+						</select>
+					</div>
+				</div>
+				<div class="form__row row">
+					<div class="form__group">
+						<select name="document_type" placeholder="Тип документа">
+							<option value="0">Свидетельство о рождении</option>
+							<option value="1">Паспорт</option>
+						</select>
+					</div>
+					<div class="form__group">
+						<input type="number" name="document_series" placeholder="Серия документа">
+					</div>
+				</div>
+				<div class="form__row row">
+					<div class="form__group">
+						<input type="number" name="document_number" placeholder="Номер документа">
+					</div>
+					<div class="form__group">
+						<input type="date" name="document_date" placeholder="Дата выдачи документа">
+					</div>
+				</div>
+				<div class="form__row row">
+					<div class="form__group">
+						<input type="email" name="email" placeholder="E-mail">
+					</div>
+				</div>
+				{% if 'club' not in params %}
+				<div class="form__row row">
+					<div class="form__group">
+						<select name="club_id" placeholder="Выберите кружок">
+							{% for item in params['clubs'] %}
+								<option value="{{ item['id'] }}">{{ item["name"] }}</option>
+						    {% endfor %}
+						</select>
+					</div>
+				</div>
+				{% else %}
+				<input type="hidden" name="club_id" value="{{ params['club'] }}">
+				{% endif %}
+				<button type="submit" class="btn">Отправить</button>
+			</form>
+		</div>
+	</div>
+</div>

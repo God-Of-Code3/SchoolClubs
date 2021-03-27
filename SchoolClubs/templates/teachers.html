@@ -1,0 +1,57 @@
+
+<div class="section _gray">
+	<div class="container">
+		<div class="section__title">
+			Наш преподовательский состав
+		</div>
+		<div class="section__content">
+			<div class="teachers not-mobile">
+				{%
+					for row in params['teachers_rows']
+				%}
+				<div class="teachers__row row">
+					{%
+						for teacher in row
+					%}
+					<div class="teachers__item teacher">
+						<div class="teacher__image">
+							<a href="teacher/{{teacher['id']}}/" data-description="{{teacher['description']}}">
+								<img src="static/img/{{teacher['image']}}" alt="">
+							</a>
+						</div>
+						<div class="teacher__text">
+							<h4>{{teacher['surname']}}</h4>
+							<h4>{{teacher['name']}} {{teacher['middle_name']}}</h4>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+				{% endfor %}
+			</div>
+			<div class="teachers mobile">
+				<div class="slider">
+					{%
+						for row in params['teachers_rows']
+					%}
+						{%
+							for teacher in row
+						%}
+						<div class="teachers__item teacher">
+							<div class="teacher__image">
+								<a href="teacher/{{teacher['id']}}/" data-description="{{teacher['description']}}}">
+									<img src="static/img/{{teacher['image']}}" alt="">
+								</a>
+							</div>
+							<div class="teacher__text">
+								<h4>{{teacher['surname']}}</h4>
+								<h4>{{teacher['name']}} {{teacher['middle_name']}}</h4>
+							</div>
+						</div>
+						{% endfor %}
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+		
