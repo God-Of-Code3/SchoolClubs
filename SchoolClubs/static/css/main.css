@@ -22,7 +22,8 @@ body {
 .container {
 	max-width: 1084px;
 	margin: 0px auto;
-	padding: 0px 20px;
+	padding: 0px 40px;
+	box-sizing: border-box;
 }
 .mobile {
 	display: none;
@@ -332,11 +333,11 @@ form {
 	border-radius: 30px;
 	outline: none;
 	border: 0;
-	transition: 0.2s;
-	-webkit-transition: 0.2s;
-	-moz-transition: 0.2s;
-	-ms-transition: 0.2s;
-	-o-transition: 0.2s;
+	transition: 0.5s;
+	-webkit-transition: 0.5s;
+	-moz-transition: 0.5s;
+	-ms-transition: 0.5s;
+	-o-transition: 0.5s;
 }
 .form__group select {
 	background: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0Ljk1IDEwIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2ZmZjt9LmNscy0ye2ZpbGw6IzQ0NDt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPmFycm93czwvdGl0bGU+PHJlY3QgY2xhc3M9ImNscy0xIiB3aWR0aD0iNC45NSIgaGVpZ2h0PSIxMCIvPjxwb2x5Z29uIGNsYXNzPSJjbHMtMiIgcG9pbnRzPSIxLjQxIDQuNjcgMi40OCAzLjE4IDMuNTQgNC42NyAxLjQxIDQuNjciLz48cG9seWdvbiBjbGFzcz0iY2xzLTIiIHBvaW50cz0iMy41NCA1LjMzIDIuNDggNi44MiAxLjQxIDUuMzMgMy41NCA1LjMzIi8+PC9zdmc+) no-repeat;
@@ -422,6 +423,11 @@ form {
 	font-size: 24px;
 	font-weight: 500;
 	padding-top: 100px;
+}
+.section__title b {
+	font-size: 24px;
+	font-weight: 700;
+	color: #ff5b15;
 }
 .section .container {
 	background: #fff;
@@ -545,7 +551,8 @@ form {
 	background-size: cover;
 	background-position: center center;
 	position: relative;
-	padding: 150px 20px;
+	padding-top: 150px;
+	padding-bottom: 150px;
 }
 .screen .container:before {
 	position: absolute;
@@ -564,4 +571,44 @@ form {
 .screen__title h1 {
 	font-size: 64px;
 	text-shadow: 0px 0px 40px #000;
+}
+@media (max-width: 720px) {
+	.screen__title h1 {
+		font-size: 48px;
+	}
+}
+/*Club Block*/
+.club-block {
+	padding: 17px 20px;
+
+	background: #FFFFFF;
+	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+	border-radius: 30px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 25px 0px;
+}
+.club-block__title h2 {
+	margin: 0px !important;
+}
+.club-block__title {
+	color: #000;
+}
+.club-block__button {
+
+}
+@media (max-width: 720px) {
+	.club-block {
+		flex-direction: column;
+		padding: 20px;
+	}
+	.club-block__title {
+		margin-bottom: 15px !important;
+		text-align: center;
+	}
+	.club-block__title h2 {
+		
+		font-size: 18px;
+	}
 }
