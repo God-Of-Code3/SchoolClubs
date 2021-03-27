@@ -18,16 +18,64 @@ def index():
     clubs = manager.get_items("club", "1")
     for club in clubs:
         params["clubs"].append({"id": club.get('id'), "name": club.get('name')})
+    params["teachers_rows"] = [
+        [
+            {
+                "id": 1,
+                "description": "Сталкер",
+                "image": "teachers/melnik.jpg",
+                "name": "Святослав",
+                "surname": "Мельников",
+                "middle_name": "Константинович",
+            },
+            {
+                "id": 1,
+                "description": "Сталкер",
+                "image": "teachers/melnik.jpg",
+                "name": "Святослав",
+                "surname": "Мельников",
+                "middle_name": "Константинович",
+            },
+            {
+                "id": 1,
+                "description": "Сталкер",
+                "image": "teachers/melnik.jpg",
+                "name": "Святослав",
+                "surname": "Мельников",
+                "middle_name": "Константинович",
+            },
+            {
+                "id": 1,
+                "description": "Сталкер",
+                "image": "teachers/melnik.jpg",
+                "name": "Святослав",
+                "surname": "Мельников",
+                "middle_name": "Константинович",
+            }
+        ]
+    ]
     return render_template('index.html', params=params)
 
 
 @app.route('/tutors')
-def index():
+def tutors():
     params = dict()
     params["clubs"] = []
     clubs = manager.get_items("club", "1")
     for club in clubs:
         params["clubs"].append({"id": club.get('id'), "name": club.get('name')})
+    params["teachers_row"] = [
+        [
+            {
+                "id": 1,
+                "description": "Учитель пинания бревна",
+                "image": "teachers/1.jpg",
+                "name": "Пинок",
+                "surname": "Пинков",
+                "middle_name": "Пинкович",
+            }
+        ]
+    ]
     return render_template('index.html', params=params)
 
 
