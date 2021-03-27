@@ -1,5 +1,4 @@
 from docxtpl import DocxTemplate
-from SchoolClubs.db.classes2 import DB, Manager
 from pathlib import Path
 
 
@@ -43,7 +42,3 @@ def createStatement(manager, st_id):
 
         doc.render(context)
         doc.save(str(st['id']) + ".docx")
-        
-
-manager = Manager(DB())
-createStatement(manager, '2')
