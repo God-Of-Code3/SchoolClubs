@@ -35,6 +35,14 @@ body {
 	.mobile {
 		display: block;
 	}
+	.container {
+		padding: 0px 20px;
+	}
+}
+@media (max-width: 580px) {
+	.container {
+		padding: 0px 20px;
+	}
 }
 .row {
 	display: flex;
@@ -360,6 +368,9 @@ form {
 	.form__row {
 		flex-direction: column;
 	}
+	.form__group select, .form__group input {
+		font-size: 16px;
+	}
 }
 .checkbox-group {
 	padding: 0 16px;
@@ -439,6 +450,10 @@ form {
 @media (max-width: 720px) {
 	.section__title {
 		font-size: 18px;
+		padding-top: 70px;
+	}
+	.section__content {
+		padding: 30px 0;
 	}
 }
 /*Components*/
@@ -447,6 +462,8 @@ form {
 }
 .teachers__row {
 	margin-bottom: 60px;
+	justify-content: center;
+	align-items: flex-start;
 }
 .teachers__item {
 	margin: 10px 10px;
@@ -528,6 +545,7 @@ form {
 	}
 	.teacher {
 		width: 100%;
+		max-width: 100%;
 	}
 	.teacher__image {
 		max-width: 250px;
@@ -575,6 +593,11 @@ form {
 @media (max-width: 720px) {
 	.screen__title h1 {
 		font-size: 48px;
+	}
+}
+@media (max-width: 580px) {
+	.screen__title h1 {
+		font-size: 32px;
 	}
 }
 /*Club Block*/
@@ -647,5 +670,100 @@ form {
 	}
 	.teacher-info__title h1 {
 		font-size: 24px;
+	}
+}
+/*Groups and lessons*/
+.group__title h2 {
+	margin-bottom: 5px;
+}
+.lessons-table {
+	display: flex;
+	justify-content: center;
+}
+.lessons-table table {
+	border-collapse: separate; 
+	margin: 20px 0px;
+  	border-spacing: 0 20px;
+  	width: 100%;
+  	font-size: 18px;
+}
+.lessons-table a {
+	color: #000;
+	text-decoration: underline;
+}
+tr {
+	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+	border-radius: 20px;
+}
+
+th:nth-child(1) {
+    border-radius: 20px 0px 0px 20px;
+}
+
+th:nth-last-child(1) {
+    border-radius: 0px 20px 20px 0px;
+}
+td, th {
+  padding-top:20px;
+  padding-bottom:20px;
+  padding-right:20px;
+  padding-left: 5px;
+  font-weight: 500; 
+}
+th {
+	color: #000;
+	background: #fff;
+	font-weight: bold;
+	text-align: left !important;
+}
+
+td {
+	vertical-align: center;
+	max-width: 400px;
+}
+
+td:first-child, th:first-child {
+  padding-left:20px;
+  padding-right:5px;
+}
+@media (max-width: 720px) {
+	.group__title {
+		text-align: center;
+	}
+	.group__title h2 {
+		font-size: 18px;
+	}
+	.lessons-table table {
+		margin: 10px 0px;
+	}
+	table {
+	    border: 0;
+	}
+	table thead {
+	    display: none;
+	}
+	table tr {
+	    margin-bottom: 20px;
+	    display: block;
+	}
+	table td {
+	    display: block;
+	    text-align: right;
+	    font-size: 13px;
+	    border-bottom: 1px solid #ccc;
+	    padding: 20px !important;
+	    max-width: 100%;
+	}
+	td:last-child {
+		border-bottom: 0px;
+	}
+	td:first-child {
+	  	text-align: right;
+	}
+	table td:before {
+    	content: attr(data-label);
+	    float: left;
+	    text-transform: uppercase;
+	    font-weight: bold;
 	}
 }
