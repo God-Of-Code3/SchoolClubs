@@ -144,6 +144,56 @@ def club(club_id):
             }
         ]
     ]
+    params["club_groups"] = [
+        {
+            "name": "Дошкольники",
+            "teacher_name": "Кирсанов Максим Григорьевич",
+            "lessons": [
+                {
+                    "start": "14:00",
+                    "finish": "16:00",
+                    "day": "Понедельник",
+                    "cabinet": "B45"
+                },
+                {
+                    "start": "14:00",
+                    "finish": "16:00",
+                    "day": "Вторник",
+                    "cabinet": "B45"
+                },
+                {
+                    "start": "14:00",
+                    "finish": "16:00",
+                    "day": "Пятница",
+                    "cabinet": "B45"
+                }
+            ]
+        },
+        {
+            "name": "Шкульники",
+            "teacher_name": "Мельников Святослав Константинович",
+            "lessons": [
+                {
+                    "start": "14:00",
+                    "finish": "16:00",
+                    "day": "Понедельник",
+                    "cabinet": "B35"
+                },
+                {
+                    "start": "14:00",
+                    "finish": "16:00",
+                    "day": "Вторник",
+                    "cabinet": "B35"
+                },
+                {
+                    "start": "14:00",
+                    "finish": "16:00",
+                    "day": "Пятница",
+                    "cabinet": "B35"
+                }
+            ]
+        }
+    ]
     params["club"] = 1
     clubs = manager.get_items("club", "1")
     return render_template('club.html', params=params)
