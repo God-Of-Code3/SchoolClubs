@@ -1,5 +1,5 @@
 <div class="section screen">
-	<div class="container" style="background-image: url('static/img/{{params['screen_image']}}')">
+	<div class="container" style="background-image: url({{ url_for('static', filename='/img/' + params['screen_image'] + '')}})">
 		
 		<div class="section__content">
 			<div class="screen__title">

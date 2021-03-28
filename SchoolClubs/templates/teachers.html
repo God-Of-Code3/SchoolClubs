@@ -2,7 +2,11 @@
 <div class="section _gray">
 	<div class="container">
 		<div class="section__title">
+			{% if not params['teachers_title'] %}
 			Наш преподавательский состав
+			{% else %}
+			{{params['teachers_title']}}
+			{% endif %}
 		</div>
 		<div class="section__content">
 			<div class="teachers not-mobile">
