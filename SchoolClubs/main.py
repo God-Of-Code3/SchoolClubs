@@ -103,7 +103,7 @@ def teacher(teacher_id):
     params = dict()
     params["clubs"] = []
     params["clubs_search_form"] = False
-    params["clubs_title"] = "На данный момент в нашей школе функционируют <b>25</b> кружков.<br>Вот самые популярные:"
+    params["clubs_title"] = "Кирсанов Максим Григорьевич ведет <b>2</b> кружка:"
     params["clubs_list"] = [
         {
             "id": 1,
@@ -117,6 +117,7 @@ def teacher(teacher_id):
     params["teacher_name"] = "Кирсанов Максим Григорьевич"
     params["teacher_description"] = "Учитель информатики и математики"
     params["teacher_image"] = "3.jpg"
+    params["clubs_show_button"] = False
     return render_template('teacher.html', params=params)
 
 
