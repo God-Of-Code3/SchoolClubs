@@ -121,6 +121,37 @@ def teacher(teacher_id):
     return render_template('teacher.html', params=params)
 
 
+@app.route('/club/<club_id>/')
+def club(club_id):
+    params = dict()
+    params["screen_image"] = "clubs/1.jpg"
+    params["screen_title"] = "Робототехника"
+
+    params["text_block"] = "На этом кружке дети учатся конструировать и программировать роботов. Ребята приобретают " \
+                           "навыки инженерного проектирования, программирования и разработки."
+    params["teachers_title"] = "Кружок ведет:"
+    params["all_teachers"] = True
+
+    params["teachers_rows"] = [
+        [
+            {
+                "id": 1,
+                "description": "Сталкер",
+                "image": "teachers/melnik.jpg",
+                "name": "Святослав",
+                "surname": "Мельников",
+                "middle_name": "Константинович",
+            }
+        ]
+    ]
+    params["club"] = 1
+    clubs = manager.get_items("club", "1")
+    params["clubs"] = []
+    for club in clubs:
+        params["clubs"].append({"id": club.get('id'), "name": club.get('name')})
+    return render_template('club.html', params=params)
+
+
 @app.route('/statement_handler/', methods=['POST', 'GET'])
 def statement_handler():
     if request.method == 'POST':
