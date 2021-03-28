@@ -31,6 +31,7 @@
 				<button type="submit" class="btn">Показать</button>
 			</form>
 			{% endif %}
+
 			{%
 				for item in params['clubs_list']
 			%}
@@ -47,6 +48,11 @@
 			{%
 				endfor
 			%}
+			{% if not params['clubs_search_form'] %}
+			<div class="center">
+				<a href="/clubs/">Все кружки</a>
+			</div>
+			{% endif %}
 		</div>
 	</div>
 </div>

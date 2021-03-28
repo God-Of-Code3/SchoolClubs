@@ -16,7 +16,7 @@
 					<div class="teachers__item teacher">
 						<div class="teacher__image">
 							<a href="teacher/{{teacher['id']}}/" data-description="{{teacher['description']}}">
-								<img src="static/img/{{teacher['image']}}" alt="">
+								<img src="{{ url_for('static', filename='/img/' + teacher['image'] + '')}}" alt="">
 							</a>
 						</div>
 						<div class="teacher__text">
@@ -39,7 +39,7 @@
 						<div class="teachers__item teacher">
 							<div class="teacher__image">
 								<a href="teacher/{{teacher['id']}}/" data-description="{{teacher['description']}}}">
-									<img src="static/img/{{teacher['image']}}" alt="">
+									<img src="{{ url_for('static', filename='/img/' + teacher['image'] + '')}}" alt="">
 								</a>
 							</div>
 							<div class="teacher__text">

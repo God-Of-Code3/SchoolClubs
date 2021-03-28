@@ -3,8 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=100%, initial-scale=1.0, user-scalable=no">
-	<link rel="stylesheet" href="static/css/main.css">
-	<link rel="stylesheet" href="static/css/slick-slider.css">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/slick-slider.css') }}">
 	<title>Кружки 2065</title>
 </head>
 <body>
@@ -15,7 +15,7 @@
 					<div class="row">
 						<div class="header__brand brand">
 							<div class="brand__image">
-								<img src="static/img/logo.png" alt="">
+								<img src="{{ url_for('static', filename='img/logo.png') }}" alt="">
 							</div>
 							<div class="brand__text">
 								<h5>КРУЖКИ</h5>
@@ -90,10 +90,10 @@
 			</div>
 		</div>
 	</div>
-	<script src="static/js/burger.js"></script>
-	<script src="static/js/checkbox.js"></script>
+	<script src="{{ url_for('static', filename='js/burger.js')}}"></script>
+	<script src="{{ url_for('static', filename='js/checkbox.js')}}"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script type="text/javascript" src="static/js/slick/slick.min.js"></script>
-	<script type="text/javascript" src="static/js/slick/config.js"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/slick/slick.min.js')}}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/slick/config.js')}}"></script>
 </body>
 </html>
