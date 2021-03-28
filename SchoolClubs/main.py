@@ -146,9 +146,6 @@ def club(club_id):
     ]
     params["club"] = 1
     clubs = manager.get_items("club", "1")
-    params["clubs"] = []
-    for club in clubs:
-        params["clubs"].append({"id": club.get('id'), "name": club.get('name')})
     return render_template('club.html', params=params)
 
 
