@@ -3,7 +3,7 @@ from db.classes2 import *
 import random
 from datetime import datetime
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="static")
 
 
 def main():
@@ -76,8 +76,8 @@ def index():
     return render_template('index.html', params=params)
 
 
-@app.route('/tutors')
-def tutors():
+@app.route('/teachers/')
+def teachers():
     params = dict()
     params["clubs"] = []
     clubs = manager.get_items("club", "1")
@@ -96,6 +96,28 @@ def tutors():
         ]
     ]
     return render_template('index.html', params=params)
+
+
+@app.route('/teacher/<teacher_id>/')
+def teacher(teacher_id):
+    params = dict()
+    params["clubs"] = []
+    params["clubs_search_form"] = False
+    params["clubs_title"] = "На данный момент в нашей школе функционируют <b>25</b> кружков.<br>Вот самые популярные:"
+    params["clubs_list"] = [
+        {
+            "id": 1,
+            "name": "<h2>Математика</h2>"
+        },
+        {
+            "id": 2,
+            "name": "<h2>Робототехника</h2>"
+        }
+    ]
+    params["teacher_name"] = "Кирсанов Максим Григорьевич"
+    params["teacher_description"] = "Учитель информатики и математики"
+    params["teacher_image"] = "3.jpg"
+    return render_template('teacher.html', params=params)
 
 
 @app.route('/statement_handler/', methods=['POST', 'GET'])
