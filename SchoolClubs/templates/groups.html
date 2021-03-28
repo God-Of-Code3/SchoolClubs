@@ -1,0 +1,44 @@
+<div class="section">
+	<div class="container">
+		<div class="section__title">Группы</div>
+		<div class="section__content">
+			{%
+				for group in params['club_groups']
+			%}
+			<div class="group">
+				<div class="group__title"><h2>{{group['name']}}</h2><p>Преподаватель группы: {{group['teacher_name']}}<br>Расписание для группы:</p></div>
+				<div class="group__lessons">
+					<div class="lessons-table">
+						<table>
+							<thead>
+								<tr>
+									<th>День недели</th>
+									<th>Начало</th>
+									<th>Окончание</th>
+									<th>Кабинет</th>
+								</tr>
+							</thead>
+							<tbody>
+								{%
+									for lesson in group['lessons']
+								%}
+								<tr>
+									<td data-label='День недели'>{{lesson['day']}}</td>
+									<td data-label='Начало'>{{lesson['start']}}</td>
+									<td data-label='Окончание'>{{lesson['finish']}}</td>
+									<td data-label='Кабинет'>{{lesson['cabinet']}}</td>
+								</tr>
+								{%
+									endfor
+								%}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			{%
+				endfor
+			%}
+		</div>
+	</div>
+</div>
