@@ -101,23 +101,42 @@ def teachers():
 
 @app.route('/teacher/<teacher_id>/')
 def teacher(teacher_id):
+    tc = User(manager, id=teacher_id, type_id=3).fields
+    gr = manager.get_items('club_group', 'teacher_id=' + teacher_id)
+    cl = []
+    if gr:
+        for group in gr:
+            c = Club(manager, id=group.fields["club_id"]).fields
+            if c not in cl:
+                cl.append(c)
+
+    information = [{"id": club["id"], "name": "<h2>" + club["name"] + "</h2>"} for club in cl]
+    name = tc['surname'] + ' ' + tc['name'] + ' ' + tc['middle_name']
+
+    if gr:
+        num_of_clubs = len(cl)
+        if 5 <= num_of_clubs <= 20:
+            num_of_clubs = " ведет <b>" + str(num_of_clubs) + "</b> кружков:"
+        elif 2 <= num_of_clubs % 10 <= 4:
+            num_of_clubs = " ведет <b>" + str(num_of_clubs) + "</b> кружка:"
+        elif num_of_clubs % 10 == 1:
+            num_of_clubs = " ведет <b>" + str(num_of_clubs) + "</b> кружок:"
+        else:
+            num_of_clubs = " ведет <b>" + str(num_of_clubs) + "</b> кружков:"
+    else:
+        num_of_clubs = " не ведет кружков."
+
     params = dict()
-    params["clubs"] = []
-    params["clubs_search_form"] = False
-    params["clubs_title"] = "Кирсанов Максим Григорьевич ведет <b>2</b> кружка:"
-    params["clubs_list"] = [
-        {
-            "id": 1,
-            "name": "<h2>Математика</h2>"
-        },
-        {
-            "id": 2,
-            "name": "<h2>Робототехника</h2>"
-        }
-    ]
-    params["teacher_name"] = "Кирсанов Максим Григорьевич"
-    params["teacher_description"] = "Учитель информатики и математики"
-    params["teacher_image"] = "3.jpg"
+    params["clubs"] = cl
+    if len(cl) > 10:
+        params["clubs_search_form"] = True
+    else:
+        params["clubs_search_form"] = False
+    params["clubs_title"] = name + num_of_clubs
+    params["clubs_list"] = information
+    params["teacher_name"] = name
+    params["teacher_description"] = tc["description"]
+    params["teacher_image"] = tc["image"]
     params["clubs_show_button"] = False
     return render_template('teacher.html', params=params)
 
