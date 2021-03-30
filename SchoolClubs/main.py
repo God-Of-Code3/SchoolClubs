@@ -2,6 +2,7 @@ from flask import Flask, render_template, url_for, request, redirect
 from db.classes2 import *
 import random
 from datetime import datetime
+from statement import createStatement
 
 app = Flask(__name__, static_folder="static")
 
@@ -218,6 +219,7 @@ def statement_handler():
         else:
             if len(users_statements) < 10:
                 new_statement.add_to_db()
+        createStatement(manager, str(Statement(manager, 'track_code=' + args['track_code']).fields['id']))
         return redirect("http://yandex.ru/maps", code=302)
     return ''
 
