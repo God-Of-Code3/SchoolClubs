@@ -26,14 +26,15 @@
 							<span></span>
 						</div>
 						<div class="header__menu menu with-burger">
-							<div class="menu__item">
-								<button class="btn">
-									Записаться
-								</button>
-							</div>
-							<div class="menu__item _underlined active"><a href="">Главная</a></div>
-							<div class="menu__item _underlined"><a href="">Преподаватели</a></div>
-							<div class="menu__item _underlined"><a href="">Кружки</a></div>
+							<div
+									class="menu__item _underlined {% if params['menu_current_page'] == 'main' %} active {% endif %}">
+								<a href="{{url_for('index', _external=True)}}">Главная</a></div>
+							<div
+									class="menu__item _underlined {% if params['menu_current_page'] == 'teachers' %} active {% endif %}"><a href="{{url_for('teachers', _external=True)}}">
+								Преподаватели</a></div>
+							<div
+									class="menu__item _underlined {% if params['menu_current_page'] == 'clubs' %} active {% endif %}"><a href="{{url_for('clubs', _external=True)}}">
+								Кружки</a></div>
 						</div>
 					</div>
 					
@@ -63,6 +64,7 @@
 					<div class="row">
 						<div class="footer__paragraph">
 							Данный сайт создан в рамках проекта для Яндекс.Лицея. Информация на этом сайте взята с потолка. Фотографии и информация о преподавателях заимствована с сайта школы №2065. Данный сайт не имеет отношения к деятельности вышеупомянутого учебного заведения.
+							<br><br><a href="/admin/" class="link">Войти</a>
 						</div>
 						<div class="footer__paragraph">
 							<b>Адрес</b>: 108819, город Москва, город Московский, 3-й микрорайон, дом 8.
@@ -79,11 +81,6 @@
 	<div class="mobile-sidebar" data-trigger="main-menu-burger">
 		<div class="container">
 			<div class="header__menu menu">
-				<div class="menu__item">
-					<button class="btn">
-						Записаться
-					</button>
-				</div>
 				<div class="menu__item _underlined active"><a href="">Главная</a></div>
 				<div class="menu__item _underlined"><a href="">Преподаватели</a></div>
 				<div class="menu__item _underlined"><a href="">Кружки</a></div>

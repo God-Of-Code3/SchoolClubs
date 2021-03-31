@@ -5,7 +5,7 @@
 		<div class="section__title">Преподаватель</div>
 		<div class="section__content">
 			<div class="teacher-info">
-				<div class="teacher-info__image"><img src="{{ url_for('static', filename='/img/teachers/' + params['teacher_image'] + '')}}" alt=""></div>
+				<div class="teacher-info__image"><img src="{{ url_for('static', filename='/img/' + params['teacher_image'] + '')}}" alt=""></div>
 				<div class="teacher-info__title">
 					<h1>{{params['teacher_name']}}</h1>
 					<p>{{params['teacher_description']}}</p>

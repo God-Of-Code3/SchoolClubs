@@ -19,7 +19,7 @@
 					%}
 					<div class="teachers__item teacher">
 						<div class="teacher__image">
-							<a href="teacher/{{teacher['id']}}/" data-description="{{teacher['description']}}">
+							<a href="{{ teacher['href'] }}" data-description="{{teacher['description']}}">
 								<img src="{{ url_for('static', filename='/img/' + teacher['image'] + '')}}" alt="">
 							</a>
 						</div>
@@ -32,6 +32,7 @@
 				</div>
 				{% endfor %}
 			</div>
+
 			<div class="teachers mobile">
 				<div class="slider">
 					{%
@@ -40,9 +41,10 @@
 						{%
 							for teacher in row
 						%}
+
 						<div class="teachers__item teacher">
 							<div class="teacher__image">
-								<a href="teacher/{{teacher['id']}}/" data-description="{{teacher['description']}}}">
+								<a href="{{ teacher['href'] }}" data-description="{{teacher['description']}}}">
 									<img src="{{ url_for('static', filename='/img/' + teacher['image'] + '')}}" alt="">
 								</a>
 							</div>
