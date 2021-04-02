@@ -143,79 +143,53 @@ def teacher(teacher_id):
 
 @app.route('/club/<club_id>/')
 def club(club_id):
-    params = dict()
-    params["screen_image"] = "clubs/1.jpg"
-    params["screen_title"] = "Робототехника"
+    cl = Club(manager, id=club_id).fields
+    gr = manager.get_items('club_group', 'club_id=' + club_id)
+    tc = []
+    groups = []
+    if gr:
+        for group in gr:
+            t = User(manager, id=group.fields["club_id"]).fields
+            if t not in tc:
+                tc.append(t)
 
-    params["text_block"] = "На этом кружке дети учатся конструировать и программировать роботов. Ребята приобретают " \
-                           "навыки инженерного проектирования, программирования и разработки."
+            groups.append({
+                "name": group.fields["name"],
+                "teacher_name": t["surname"] + ' ' + t["name"] + ' ' + t["middle_name"],
+                "lessons": [
+                    {
+                        "start": lesson.fields["start"],
+                        "finish": lesson.fields["finish"],
+                        "day": lesson.fields["day"],
+                        "cabinet": lesson.fields["cabinet"]
+                    }
+                    for lesson in manager.get_items('club_group_lesson', 'group_id=' + str(group.fields["id"]))
+                ]
+            })
+
+    main_teacher = [[{
+        "id": teacher['id'],
+        "description": teacher["description"],
+        "image": teacher["image"],
+        "name": teacher["name"],
+        "surname": teacher["surname"],
+        "middle_name": teacher["middle_name"],
+    }
+        for teacher in tc]]
+
+    params = dict()
+    params['menu_current_page'] = 'clubs'
+    params["screen_image"] = cl['image']
+    params["screen_title"] = cl['name']
+
+    params["text_block"] = cl['description']
     params["teachers_title"] = "Кружок ведет:"
     params["all_teachers"] = True
 
-    params["teachers_rows"] = [
-        [
-            {
-                "id": 1,
-                "description": "Сталкер",
-                "image": "teachers/melnik.jpg",
-                "name": "Святослав",
-                "surname": "Мельников",
-                "middle_name": "Константинович",
-            }
-        ]
-    ]
-    params["club_groups"] = [
-        {
-            "name": "Дошкольники",
-            "teacher_name": "Кирсанов Максим Григорьевич",
-            "lessons": [
-                {
-                    "start": "14:00",
-                    "finish": "16:00",
-                    "day": "Понедельник",
-                    "cabinet": "B45"
-                },
-                {
-                    "start": "14:00",
-                    "finish": "16:00",
-                    "day": "Вторник",
-                    "cabinet": "B45"
-                },
-                {
-                    "start": "14:00",
-                    "finish": "16:00",
-                    "day": "Пятница",
-                    "cabinet": "B45"
-                }
-            ]
-        },
-        {
-            "name": "Шкульники",
-            "teacher_name": "Мельников Святослав Константинович",
-            "lessons": [
-                {
-                    "start": "14:00",
-                    "finish": "16:00",
-                    "day": "Понедельник",
-                    "cabinet": "B35"
-                },
-                {
-                    "start": "14:00",
-                    "finish": "16:00",
-                    "day": "Вторник",
-                    "cabinet": "B35"
-                },
-                {
-                    "start": "14:00",
-                    "finish": "16:00",
-                    "day": "Пятница",
-                    "cabinet": "B35"
-                }
-            ]
-        }
-    ]
+    params["teachers_rows"] = main_teacher
+    params["club_groups"] = groups
     params["club"] = 1
-    clubs = manager.get_items("club", "1")
+    
     return render_template('club.html', params=params)
 
 
