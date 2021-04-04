@@ -19,7 +19,7 @@ def index():
     params["clubs"] = []
     clubs = manager.get_items("club", "1")
     for club in clubs:
-        params["clubs"].append({"id": club.get('id'), "name": club.get('name')})
+        params["clubs"].append({"id": club.get('id'), "name": "<h2>" + club.get('name') + "</h2>"})
     params["screen_image"] = "main-screen.jpg"
     params["screen_title"] = "КРУЖКИ ШКОЛЫ<br>2065"
 
@@ -27,17 +27,49 @@ def index():
                            "технологиями и увлекательными занятиями, раскрывать их таланты и находить свое призвание."
 
     params["clubs_search_form"] = False
-    params["clubs_title"] = "На данный момент в нашей школе функционируют <b>25</b> кружков.<br>Вот самые популярные:"
-    params["clubs_list"] = [
-        {
-            "id": 1,
-            "name": "<h2>Математика</h2>"
-        },
-        {
-            "id": 2,
-            "name": "<h2>Робототехника</h2>"
-        }
-    ]
+
+    printed_clubs = 5
+    if clubs:
+        num_of_clubs = len(clubs)
+        if 5 <= num_of_clubs <= 20:
+            num_of_clubs = str(num_of_clubs) + "</b> кружков"
+        elif 2 <= num_of_clubs % 10 <= 4:
+            num_of_clubs = str(num_of_clubs) + "</b> кружка"
+        elif num_of_clubs % 10 == 1:
+            num_of_clubs = str(num_of_clubs) + "</b> кружок"
+        else:
+            num_of_clubs = str(num_of_clubs) + "</b> кружков"
+
+        if len(clubs) > printed_clubs:
+            num_of_clubs = "функционируют <b>" + num_of_clubs + ".<br>Вот самые популярные:"
+        else:
+            num_of_clubs = "функционируют <b>" + num_of_clubs + ":"
+    else:
+        num_of_clubs = "нет ни одного кружка."
+
+    params["clubs_title"] = "На данный момент в нашей школе " + num_of_clubs
+
+    params["clubs_list"] = []
+    lessons = []
+    for club in params["clubs"]:
+        lessons.append({"club": club, "lessons": 0})
+        gr = manager.get_items('club_group', 'club_id=' + str(club.get("id")))
+        if gr:
+            for group in gr:
+                lessons[-1]["lessons"] += len(
+                    manager.get_items('club_group_lesson', 'group_id=' + str(group.get("id"))))
+
+    for _ in range(len(clubs)):
+        max_lessons = max([club["lessons"] for club in lessons])
+        for club in lessons:
+            if club["lessons"] == max_lessons:
+                params["clubs_list"].append(club["club"])
+                for c in range(len(lessons)):
+                    if lessons[c] == club:
+                        del lessons[c]
+                        break
+    if len(clubs) > printed_clubs:
+        params["clubs_list"] = params["clubs_list"][:printed_clubs]
 
     params["teachers_rows"] = []
     teachers = manager.get_items("user", "`type_id` = '3' LIMIT 8")
