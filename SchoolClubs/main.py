@@ -155,6 +155,19 @@ def teacher(teacher_id):
 def clubs():
     params = dict()
     params['menu_current_page'] = 'clubs'
+
+    params["clubs_list"] = []
+    clubs = manager.get_items("club", "1")
+    for club in clubs:
+        params["clubs_list"].append({"id": club.get('id'), "name": "<h2>" + club.get('name') + "</h2>"})
+
+    if len(clubs) > 5:
+        params["clubs_search_form"] = True
+    #params["clubs_search_form"] = True
+    params["clubs_title"] = "Список наших кружков (<b>" + str(len(clubs)) + "</b>):"
+    params["clubs_categories"] = [{"id": category.get('id'), "name": category.get('name')}
+                                  for category in manager.get_items("club_category", "True")]
+
     return render_template('all_clubs.html', params=params)
 
 
