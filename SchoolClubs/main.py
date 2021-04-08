@@ -273,6 +273,66 @@ def statement_handler():
         return redirect("http://yandex.ru/maps", code=302)
     return ''
 
+@app.route('/search_form/', methods=['POST', 'GET'])
+def search_form():
+    if request.method == 'POST':
+        args = dict()
+        for key in request.form:
+            args[key] = request.form[key]
+
+        if args['club_id'] == '0':
+            result = manager.get_items('club', 'True')
+        else:
+            result = manager.get_items('club', 'category_id=' + args['club_id'])
+
+        print(args['club_id'])
+
+        if args['search']:
+            result = [club for club in result
+                      if args['search'].lower() in club.get('name').lower() or\
+                      args['search'].lower() in club.get('description').lower()]
+
+        if args['sort_by'] == '0':
+            sorted_result = result
+        elif args['sort_by'] == '1':
+            sorted_result = []
+            for_sorting = {}
+            for club in result:
+                for_sorting[club.get('name')] = club
+            keys = list(for_sorting.keys())
+            keys.sort()
+            for key in keys:
+                sorted_result.append(for_sorting[key])
+        elif args['sort_by'] == '2':
+            sorted_result = []
+            for_sorting = {}
+            for club in result:
+                for_sorting[club.get('age')] = club
+            keys = list(for_sorting.keys())
+            keys.sort()
+            for key in keys:
+                sorted_result.append(for_sorting[key])
+
+        params = dict()
+        params['menu_current_page'] = 'clubs'
+
+        params["clubs_list"] = []
+        clubs = sorted_result
+        for club in clubs:
+            params["clubs_list"].append({"id": club.get('id'), "name": "<h2>" + club.get('name') + "</h2>"})
+
+        params["clubs_search_form"] = False
+
+        if sorted_result:
+            params["clubs_title"] = "Результаты поиска (<b>" + str(len(clubs)) + "</b>):"
+        else:
+            params["clubs_title"] = "По этому запросу ничего не найдено"
+        params["clubs_categories"] = [{"id": category.get('id'), "name": category.get('name')}
+                                      for category in manager.get_items("club_category", "True")]
+
+        return render_template('all_clubs.html', params=params)
+    return ''
+
 
 if __name__ == '__main__':
     main()
