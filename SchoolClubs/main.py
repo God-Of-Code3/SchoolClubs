@@ -19,7 +19,7 @@ def index():
     params["clubs"] = []
     clubs = manager.get_items("club", "1")
     for club in clubs:
-        params["clubs"].append({"id": club.get('id'), "name": "<h2>" + club.get('name') + "</h2>"})
+        params["clubs"].append({"id": club.get('id'), "name": club.get('name')})
     params["screen_image"] = "main-screen.jpg"
     params["screen_title"] = "КРУЖКИ ШКОЛЫ<br>2065"
 
@@ -52,7 +52,7 @@ def index():
     params["clubs_list"] = []
     lessons = []
     for club in params["clubs"]:
-        lessons.append({"club": club, "lessons": 0})
+        lessons.append({"club": {"id": club.get('id'), "name": "<h2>" + club.get('name') + "</h2>"}, "lessons": 0})
         gr = manager.get_items('club_group', 'club_id=' + str(club.get("id")))
         if gr:
             for group in gr:
