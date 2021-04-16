@@ -59,7 +59,7 @@ def index():
                 lessons[-1]["lessons"] += len(
                     manager.get_items('club_group_lesson', 'group_id=' + str(group.get("id"))))
 
-    for _ in range(len(clubs)):
+    while lessons:
         max_lessons = max([club["lessons"] for club in lessons])
         for club in lessons:
             if club["lessons"] == max_lessons:
